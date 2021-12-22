@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,6 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AntraUzduotis {
 
     public WebDriver driver;
+
+    @DataProvider(name = "iPods")
+    public Object[][] searchData() {
+        return new Object[][]{
+                {"iPod Nano"},
+                {"iPod Touch"},
+                {"iPod Shuffle"}
+        };
+    }
 
 
     public void invokeDriver() {
@@ -51,5 +61,10 @@ public class AntraUzduotis {
     @Test(priority = 4)
     public void clickOnListButton(){
         driver.findElement(By.id("list-view")).click();
+    }
+
+    @Test(dataProvider = "iPods")
+    public void addToCart(){
+
     }
 }
